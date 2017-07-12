@@ -1,0 +1,140 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * unittest2.c
+        -:    3: * unit test for updateCoins function
+        -:    4: */
+        -:    5:
+        -:    6:/*
+        -:    7: * Include the following lines in your makefile:
+        -:    8: *
+        -:    9: * unittest2: unittest1.c dominion.o rngs.o
+        -:   10: *      gcc -o unittest2 -g  unittest2.c dominion.o rngs.o $(CFLAGS)
+        -:   11: */
+        -:   12:
+        -:   13:/*
+        -:   14:* Business rules:
+        -:   15:* 1. Gather the value of the treasure cards in the player's hand, plus the bonus for the round.
+        -:   16:* 2. Copper is worth 1, silver is worth 2, gold is worth 3.
+        -:   17:*/
+        -:   18:
+        -:   19:#include "dominion.h"
+        -:   20:#include "dominion_helpers.h"
+        -:   21:#include <string.h>
+        -:   22:#include <stdio.h>
+        -:   23:#include <assert.h>
+        -:   24:#include "rngs.h"
+        -:   25:#include <stdlib.h>
+        -:   26:
+        -:   27:#define TESTFUNCTION "updateCoins()"
+        -:   28:
+        -:   29:int numTest = 0;
+        -:   30:int passedTest = 0;
+        -:   31:
+function assertTrue called 5 returned 100% blocks executed 83%
+        5:   32:int assertTrue(int testVal, char* testName)
+        -:   33:{
+        5:   34:	numTest++;
+        -:   35:	
+        5:   36:	if (testVal)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   37:	{
+        5:   38:		printf("PASS: %s\n", testName);
+call    0 returned 100%
+        5:   39:		passedTest++;
+        -:   40:	}
+        -:   41:	else
+        -:   42:	{
+    #####:   43:		printf("FAIL: %s\n", testName);
+call    0 never executed
+        -:   44:	}
+        -:   45:	
+        5:   46:	return 0;
+        -:   47:}
+        -:   48:
+function main called 1 returned 100% blocks executed 100%
+        1:   49:int main() {
+        1:   50:	int seed = 1000;
+        1:   51:	int numPlayers = 2;
+        -:   52:	struct gameState G, testG;
+        1:   53:	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   54:			sea_hag, tribute, smithy, council_room};
+        -:   55:	
+        -:   56:	// initialize a game state and player cards
+        1:   57:	initializeGame(numPlayers, k, seed, &G);
+call    0 returned 100%
+        -:   58:
+        1:   59:	printf("----------------- Testing %s ----------------\n", TESTFUNCTION);
+call    0 returned 100%
+        -:   60:	//enum copper = 4, silver = 5, gold = 6.
+        -:   61:	
+        -:   62:	//gain 1 copper
+        -:   63:	// copy the game state to a test case	
+        1:   64:	memcpy(&testG, &G, sizeof(struct gameState));
+        1:   65:	gainCard(4, &testG, 2, testG.whoseTurn);
+call    0 returned 100%
+        1:   66:	updateCoins(testG.whoseTurn, &testG, 0);
+call    0 returned 100%
+        1:   67:	assertTrue(testG.coins == G.coins + 1, "Test 1: Copper value");
+call    0 returned 100%
+        1:   68:	printf("Expected %d coins. Got %d coins.\n", G.coins + 1, testG.coins);
+call    0 returned 100%
+        -:   69:
+        -:   70:	//gain 1 silver
+        -:   71:	// copy the game state to a test case	
+        1:   72:	memcpy(&testG, &G, sizeof(struct gameState));
+        1:   73:	gainCard(5, &testG, 2, testG.whoseTurn);
+call    0 returned 100%
+        1:   74:	updateCoins(testG.whoseTurn, &testG, 0);
+call    0 returned 100%
+        1:   75:	assertTrue(testG.coins == G.coins + 2, "Test 2: Silver value");
+call    0 returned 100%
+        1:   76:	printf("Expected %d coins. Got %d coins.\n", G.coins + 2, testG.coins);
+call    0 returned 100%
+        -:   77:	
+        -:   78:	//gain 1 gold
+        -:   79:	// copy the game state to a test case	
+        1:   80:	memcpy(&testG, &G, sizeof(struct gameState));
+        1:   81:	gainCard(6, &testG, 2, testG.whoseTurn);
+call    0 returned 100%
+        1:   82:	updateCoins(testG.whoseTurn, &testG, 0);
+call    0 returned 100%
+        1:   83:	assertTrue(testG.coins == G.coins + 3, "Test 3: Gold value");
+call    0 returned 100%
+        1:   84:	printf("Expected %d coins. Got %d coins.\n", G.coins + 3, testG.coins);
+call    0 returned 100%
+        -:   85:	
+        -:   86:	//gain 1 bonus coin
+        -:   87:	// copy the game state to a test case	
+        1:   88:	memcpy(&testG, &G, sizeof(struct gameState));
+        1:   89:	updateCoins(testG.whoseTurn, &testG, 1);
+call    0 returned 100%
+        1:   90:	assertTrue(testG.coins == G.coins + 1, "Test 4: +1 bonus coin");
+call    0 returned 100%
+        1:   91:	printf("Expected %d coins. Got %d coins.\n", G.coins + 1, testG.coins);
+call    0 returned 100%
+        -:   92:	
+        -:   93:	//gain 1 copper, silver, gold, and bonus
+        -:   94:	// copy the game state to a test case	
+        1:   95:	memcpy(&testG, &G, sizeof(struct gameState));
+        1:   96:	gainCard(4, &testG, 2, testG.whoseTurn);
+call    0 returned 100%
+        1:   97:	gainCard(5, &testG, 2, testG.whoseTurn);
+call    0 returned 100%
+        1:   98:	gainCard(6, &testG, 2, testG.whoseTurn);
+call    0 returned 100%
+        1:   99:	updateCoins(testG.whoseTurn, &testG, 1);
+call    0 returned 100%
+        1:  100:	assertTrue(testG.coins == G.coins + 7, "Test 5: +1 copper, silver, gold, bonus");
+call    0 returned 100%
+        1:  101:	printf("Expected %d coins. Got %d coins.\n", G.coins + 7, testG.coins);	
+call    0 returned 100%
+        -:  102:	
+        1:  103:	printf("-----------------%d/%d TESTS PASSED FOR %s----------------\n", passedTest, numTest, TESTFUNCTION);	
+call    0 returned 100%
+        -:  104:	
+        -:  105:}
