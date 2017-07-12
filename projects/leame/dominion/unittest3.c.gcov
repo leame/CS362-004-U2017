@@ -1,0 +1,104 @@
+        -:    0:Source:unittest3.c
+        -:    0:Graph:unittest3.gcno
+        -:    0:Data:unittest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * unittest3.c
+        -:    3: * unit test for isGameOver function
+        -:    4: */
+        -:    5:
+        -:    6:/*
+        -:    7: * Include the following lines in your makefile:
+        -:    8: *
+        -:    9: * unittest3: unittest1.c dominion.o rngs.o
+        -:   10: *      gcc -o unittest3 -g  unittest3.c dominion.o rngs.o $(CFLAGS)
+        -:   11: */
+        -:   12:
+        -:   13:/*
+        -:   14:* Business rules:
+        -:   15:* 1. The game is over when the province stack is empty. 
+        -:   16:* 2. The game is over when 3 supply piles are empty.
+        -:   17:* 3. Otherwise, the game is not over.
+        -:   18:*
+        -:   19:*/
+        -:   20:
+        -:   21:#include "dominion.h"
+        -:   22:#include "dominion_helpers.h"
+        -:   23:#include <string.h>
+        -:   24:#include <stdio.h>
+        -:   25:#include <assert.h>
+        -:   26:#include "rngs.h"
+        -:   27:#include <stdlib.h>
+        -:   28:
+        -:   29:#define TESTFUNCTION "isGameOver()"
+        -:   30:
+        -:   31:int numTest = 0;
+        -:   32:int passedTest = 0;
+        -:   33:
+function assertTrue called 3 returned 100% blocks executed 83%
+        3:   34:int assertTrue(int testVal, char* testName)
+        -:   35:{
+        3:   36:	numTest++;
+        -:   37:	
+        3:   38:	if (testVal)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   39:	{
+        3:   40:		printf("PASS: %s\n", testName);
+call    0 returned 100%
+        3:   41:		passedTest++;
+        -:   42:	}
+        -:   43:	else
+        -:   44:	{
+    #####:   45:		printf("FAIL: %s\n", testName);
+call    0 never executed
+        -:   46:	}
+        -:   47:	
+        3:   48:	return 0;
+        -:   49:}
+        -:   50:
+function main called 1 returned 100% blocks executed 100%
+        1:   51:int main()
+        -:   52:{
+        1:   53:	int seed = 1000;
+        1:   54:	int numPlayers = 2;
+        -:   55:	struct gameState G, testG;
+        1:   56:	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   57:			sea_hag, tribute, smithy, council_room};
+        -:   58:	
+        -:   59:	// initialize a game state and player cards
+        1:   60:	initializeGame(numPlayers, k, seed, &G);
+call    0 returned 100%
+        -:   61:
+        1:   62:	printf("----------------- Testing %s ----------------\n", TESTFUNCTION);
+call    0 returned 100%
+        -:   63:	
+        -:   64:	// copy the game state to a test case	
+        1:   65:	memcpy(&testG, &G, sizeof(struct gameState));
+        -:   66:	
+        -:   67:	//initial game state. !isGameOver
+        1:   68:	assertTrue(isGameOver(&testG) == 0, "Test 1: Game in progress.");
+call    0 returned 100%
+call    1 returned 100%
+        -:   69:	
+        -:   70:	//set province stack to 0. province enum is 3
+        1:   71:	testG.supplyCount[3] = 0;
+        1:   72:	assertTrue(isGameOver(&testG) == 1, "Test 2: Province stack empty.");
+call    0 returned 100%
+call    1 returned 100%
+        -:   73:	
+        -:   74:	//copy game state to reset to !isGameOver
+        1:   75:	memcpy(&testG, &G, sizeof(struct gameState));
+        -:   76:	//set first 3 supply stacks to 0. enum 0, 1, 2
+        1:   77:	testG.supplyCount[0] = 0;
+        1:   78:	testG.supplyCount[1] = 0;
+        1:   79:	testG.supplyCount[2] = 0;
+        1:   80:	assertTrue(isGameOver(&testG) == 1, "Test 3: 3 empty supply stacks.");	
+call    0 returned 100%
+call    1 returned 100%
+        -:   81:	
+        1:   82:	printf("-----------------%d/%d TESTS PASSED FOR %s----------------\n", passedTest, numTest, TESTFUNCTION);
+call    0 returned 100%
+        1:   83:	return 0;
+        -:   84:}

@@ -1,0 +1,145 @@
+        -:    0:Source:cardtest4.c
+        -:    0:Graph:cardtest4.gcno
+        -:    0:Data:cardtest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * cardtest4.c
+        -:    3: * unit test for village
+        -:    4: */
+        -:    5:
+        -:    6:/*
+        -:    7: * Include the following lines in your makefile:
+        -:    8: *
+        -:    9: * cardtest4: cardtest4.c dominion.o rngs.o
+        -:   10: *      gcc -o cardtest4 -g  cardtest4.c dominion.o rngs.o $(CFLAGS)
+        -:   11: */
+        -:   12: 
+        -:   13: /*
+        -:   14:* Business rules:
+        -:   15:* 1. Player gains 1 card.
+        -:   16:* 2. Player loses 1 card from deck.
+        -:   17:* 3. Player gains 2 actions.
+        -:   18:* 4. No state changes occur for other players.
+        -:   19:& 5. No state changes occur to victory or kingdom card piles.
+        -:   20:*/
+        -:   21:
+        -:   22:#include "dominion.h"
+        -:   23:#include "dominion_helpers.h"
+        -:   24:#include <string.h>
+        -:   25:#include <stdio.h>
+        -:   26:#include <assert.h>
+        -:   27:#include "rngs.h"
+        -:   28:#include <stdlib.h>
+        -:   29:
+        -:   30:#define TESTCARD "village"
+        -:   31:
+        -:   32:int numTest = 0;
+        -:   33:int passedTest = 0;
+        -:   34:
+function assertTrue called 28 returned 100% blocks executed 100%
+       28:   35:int assertTrue(int testVal, char* testName)
+        -:   36:{
+       28:   37:	numTest++;
+        -:   38:	
+       28:   39:	if (testVal)
+branch  0 taken 96% (fallthrough)
+branch  1 taken 4%
+        -:   40:	{
+       27:   41:		printf("PASS: %s\n", testName);
+call    0 returned 100%
+       27:   42:		passedTest++;
+        -:   43:	}
+        -:   44:	else
+        -:   45:	{
+        1:   46:		printf("FAIL: %s\n", testName);
+call    0 returned 100%
+        -:   47:	}
+        -:   48:	
+       28:   49:	return 0;
+        -:   50:}
+        -:   51:
+function main called 1 returned 100% blocks executed 100%
+        1:   52:int main ()
+        -:   53:{
+        -:   54:	int i;
+        1:   55:	int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+        1:   56:	int seed = 1000;
+        1:   57:	int numPlayers = 2;
+        -:   58:	struct gameState G, testG;
+        1:   59:	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   60:			sea_hag, tribute, smithy, council_room};
+        -:   61:	
+        -:   62:	// initialize a game state and player cards
+        1:   63:	initializeGame(numPlayers, k, seed, &G);
+call    0 returned 100%
+        -:   64:
+        1:   65:	printf("----------------- Testing %s ----------------\n", TESTCARD);
+call    0 returned 100%
+        -:   66:	
+        -:   67:	// copy the game state to a test case	
+        1:   68:	memcpy(&testG, &G, sizeof(struct gameState));
+        -:   69:	
+        -:   70:	//play village
+        1:   71:	cardEffect(village, choice1, choice2, choice3, &testG, handpos, &bonus);
+call    0 returned 100%
+        -:   72:	
+        -:   73:	//1. Player gains 1 card to hand and discards village, resulting in a net of +0 cards.
+        1:   74:	assertTrue(testG.handCount[testG.whoseTurn] == G.handCount[G.whoseTurn], "Test 1: +0 cards to hand");
+call    0 returned 100%
+        1:   75:	printf("Expected %d cards. Got %d cards.\n", G.handCount[G.whoseTurn], testG.handCount[testG.whoseTurn]);
+call    0 returned 100%
+        -:   76:	
+        -:   77:	//2. Player loses 1 cards from deck.
+        1:   78:	assertTrue(testG.deckCount[testG.whoseTurn] == G.deckCount[G.whoseTurn] - 1, "Test 2: -1 cards from deck");
+call    0 returned 100%
+        1:   79:	printf("Expected %d cards. Got %d cards.\n", G.deckCount[G.whoseTurn] - 1, testG.deckCount[testG.whoseTurn]);
+call    0 returned 100%
+        -:   80:	
+        -:   81:	//3. Player gains 2 actions.
+        1:   82:	assertTrue(testG.numActions == G.numActions + 2, "Test 3: +1 Buys");
+call    0 returned 100%
+        1:   83:	printf("Expected %d actions. Got %d actions.\n", G.numActions + 2, testG.numActions);
+call    0 returned 100%
+        -:   84:	
+        -:   85:	//4. No state changes occur for other players.
+        3:   86:	for (i = 0; i < numPlayers; i++)
+branch  0 taken 67%
+branch  1 taken 33% (fallthrough)
+        -:   87:	{
+        2:   88:		if (i != G.whoseTurn)
+branch  0 taken 50% (fallthrough)
+branch  1 taken 50%
+        -:   89:		{
+        1:   90:			printf("---Testing state for player %d---\n", i);
+call    0 returned 100%
+        1:   91:			assertTrue (testG.handCount[i] == G.handCount[i], "Hand count.");
+call    0 returned 100%
+        1:   92:			assertTrue (testG.deckCount[i] == G.deckCount[i], "Deck count.");
+call    0 returned 100%
+        -:   93:		}
+        -:   94:	}
+        -:   95:	
+        -:   96:	//5. No state changes occur to victory or kingdom card piles.
+        1:   97:	assertTrue(testG.supplyCount[estate] == G.supplyCount[estate], "Estate pile.");
+call    0 returned 100%
+        1:   98:	assertTrue(testG.supplyCount[duchy] == G.supplyCount[duchy], "Duchy pile.");
+call    0 returned 100%
+        1:   99:	assertTrue(testG.supplyCount[province] == G.supplyCount[province], "Estate pile.");
+call    0 returned 100%
+        -:  100:	
+       21:  101:	for (i = adventurer; i <= treasure_map; i++)
+branch  0 taken 95%
+branch  1 taken 5% (fallthrough)
+        -:  102:	{
+       20:  103:		printf("---Testing card pile for enum %d---\n", i);
+call    0 returned 100%
+       20:  104:		assertTrue(testG.supplyCount[i] = G.supplyCount[i], "Card pile.");
+call    0 returned 100%
+        -:  105:	}
+        -:  106:	
+        1:  107:	printf("-----------------%d/%d TESTS PASSED FOR %s----------------\n", passedTest, numTest, TESTCARD);	
+call    0 returned 100%
+        -:  108:	
+        1:  109:	return 0;
+        -:  110:}

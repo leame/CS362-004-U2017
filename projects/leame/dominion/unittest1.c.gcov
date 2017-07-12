@@ -1,0 +1,129 @@
+        -:    0:Source:unittest1.c
+        -:    0:Graph:unittest1.gcno
+        -:    0:Data:unittest1.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * unittest1.c
+        -:    3: * unit test for buyCard function
+        -:    4: */
+        -:    5:
+        -:    6:/*
+        -:    7: * Include the following lines in your makefile:
+        -:    8: *
+        -:    9: * unittest1: unittest1.c dominion.o rngs.o
+        -:   10: *      gcc -o unittest1 -g  unittest1.c dominion.o rngs.o $(CFLAGS)
+        -:   11: */
+        -:   12:
+        -:   13:/*
+        -:   14:* Business rules:
+        -:   15:* 1. Player gains 1 card to discard pile.
+        -:   16:* 2. Player loses the cost of the card.
+        -:   17:* 3. Player loses 1 buy.
+        -:   18:* 4. supplyCount loses 1 card.
+        -:   19:* 5. Last card in discard pile is the card bought.
+        -:   20:*/
+        -:   21:
+        -:   22:#include "dominion.h"
+        -:   23:#include "dominion_helpers.h"
+        -:   24:#include <string.h>
+        -:   25:#include <stdio.h>
+        -:   26:#include <assert.h>
+        -:   27:#include "rngs.h"
+        -:   28:#include <stdlib.h>
+        -:   29:
+        -:   30:#define TESTFUNCTION "buyCard()"
+        -:   31:#define SUPPLYPOS 0
+        -:   32:
+        -:   33:int numTest = 0;
+        -:   34:int passedTest = 0;
+        -:   35:
+function assertTrue called 5 returned 100% blocks executed 83%
+        5:   36:int assertTrue(int testVal, char* testName)
+        -:   37:{
+        5:   38:	numTest++;
+        -:   39:	
+        5:   40:	if (testVal)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   41:	{
+        5:   42:		printf("PASS: %s\n", testName);
+call    0 returned 100%
+        5:   43:		passedTest++;
+        -:   44:	}
+        -:   45:	else
+        -:   46:	{
+    #####:   47:		printf("FAIL: %s\n", testName);
+call    0 never executed
+        -:   48:	}
+        -:   49:	
+        5:   50:	return 0;
+        -:   51:}
+        -:   52:
+function main called 1 returned 100% blocks executed 91%
+        1:   53:int main() {
+        1:   54:	int seed = 1000;
+        1:   55:	int numPlayers = 2;
+        -:   56:	struct gameState G, testG;
+        1:   57:	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   58:			sea_hag, tribute, smithy, council_room};
+        -:   59:	
+        -:   60:	// initialize a game state and player cards
+        1:   61:	initializeGame(numPlayers, k, seed, &G);
+call    0 returned 100%
+        -:   62:
+        1:   63:	printf("----------------- Testing %s ----------------\n", TESTFUNCTION);
+call    0 returned 100%
+        -:   64:	
+        -:   65:	// copy the game state to a test case	
+        1:   66:	memcpy(&testG, &G, sizeof(struct gameState));
+        -:   67:	
+        1:   68:	if (buyCard(SUPPLYPOS, &testG) == -1)
+call    0 returned 100%
+branch  1 taken 0% (fallthrough)
+branch  2 taken 100%
+        -:   69:	{
+    #####:   70:		printf("Could not buy a card.");
+call    0 never executed
+    #####:   71:		return -1;
+        -:   72:	}
+        -:   73:	
+        -:   74:	else
+        -:   75:	{
+        -:   76:		//1. Player gains 1 card to discard pile.
+        1:   77:		assertTrue(testG.discardCount[testG.whoseTurn] == G.discardCount[G.whoseTurn] + 1, "Test 1: +1 card to discard pile");
+call    0 returned 100%
+        1:   78:		printf("Expected %d cards. Got %d cards.\n", G.discardCount[G.whoseTurn] + 1, testG.discardCount[testG.whoseTurn]);
+call    0 returned 100%
+        -:   79:		
+        -:   80:		//2. Player loses the cost of the card.
+        1:   81:		assertTrue(testG.coins == G.coins - getCost(SUPPLYPOS), "Test 2: Subtract coins");
+call    0 returned 100%
+call    1 returned 100%
+        1:   82:		printf("Expected %d coins. Got %d coins.\n", G.coins - getCost(SUPPLYPOS), testG.coins);
+call    0 returned 100%
+call    1 returned 100%
+        -:   83:		
+        -:   84:		//3. Player loses 1 buy.
+        1:   85:		assertTrue(testG.numBuys == G.numBuys - 1, "Test 3: Substract buys");
+call    0 returned 100%
+        1:   86:		printf("Expected %d buys. Got %d buys.\n", G.numBuys - 1, testG.numBuys);
+call    0 returned 100%
+        -:   87:		
+        -:   88:		//4. supplyCount loses 1 card.
+        1:   89:		assertTrue(testG.supplyCount[SUPPLYPOS] == G.supplyCount[SUPPLYPOS] - 1, "Test 4: Subtract supplyCount");
+call    0 returned 100%
+        1:   90:		printf("Expected %d supplyCount. Got %d supplyCount.\n", G.supplyCount[SUPPLYPOS] - 1, testG.supplyCount[SUPPLYPOS]);
+call    0 returned 100%
+        -:   91:		
+        -:   92:		//5. Last card in discard pile is the card bought.
+        1:   93:		assertTrue(testG.discard[testG.whoseTurn][testG.discardCount[testG.whoseTurn]] == SUPPLYPOS, "Test 5: Check last discarded card.");
+call    0 returned 100%
+        1:   94:		printf("Tried to buy enum %d. Bought enum %d.\n", SUPPLYPOS, testG.discard[testG.whoseTurn][testG.discardCount[testG.whoseTurn]]);
+call    0 returned 100%
+        -:   95:	
+        1:   96:		printf("-----------------%d/%d TESTS PASSED FOR %s----------------\n", passedTest, numTest, TESTFUNCTION);
+call    0 returned 100%
+        1:   97:		return 0;
+        -:   98:	}
+        -:   99:}

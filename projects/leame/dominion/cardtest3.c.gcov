@@ -1,0 +1,149 @@
+        -:    0:Source:cardtest3.c
+        -:    0:Graph:cardtest3.gcno
+        -:    0:Data:cardtest3.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * cardtest3.c
+        -:    3: * unit test for council_room
+        -:    4: */
+        -:    5:
+        -:    6:/*
+        -:    7: * Include the following lines in your makefile:
+        -:    8: *
+        -:    9: * cardtest3: cardtest3.c dominion.o rngs.o
+        -:   10: *      gcc -o cardtest3 -g  cardtest3.c dominion.o rngs.o $(CFLAGS)
+        -:   11: */
+        -:   12: 
+        -:   13: /*
+        -:   14:* Business rules:
+        -:   15:* 1. Player gains 4 cards.
+        -:   16:* 2. Player loses 4 cards from deck.
+        -:   17:* 3. Player gains 1 buy.
+        -:   18:* 4. All other players gain 1 card.
+        -:   19:* 5. All other players lose 1 card from deck.
+        -:   20:& 6. No state changes occur to victory or kingdom card piles.
+        -:   21:*/
+        -:   22:
+        -:   23:#include "dominion.h"
+        -:   24:#include "dominion_helpers.h"
+        -:   25:#include <stdio.h>
+        -:   26:#include <string.h>
+        -:   27:#include "rngs.h"
+        -:   28:#include <assert.h>
+        -:   29:#include <stdlib.h>
+        -:   30:
+        -:   31:#define TESTCARD "council_room"
+        -:   32:
+        -:   33:int numTest = 0;
+        -:   34:int passedTest = 0;
+        -:   35:
+function assertTrue called 32 returned 100% blocks executed 100%
+       32:   36:int assertTrue(int testVal, char* testName)
+        -:   37:{
+       32:   38:	numTest++;
+        -:   39:	
+       32:   40:	if (testVal)
+branch  0 taken 94% (fallthrough)
+branch  1 taken 6%
+        -:   41:	{
+       30:   42:		printf("PASS: %s\n", testName);
+call    0 returned 100%
+       30:   43:		passedTest++;
+        -:   44:	}
+        -:   45:	else
+        -:   46:	{
+        2:   47:		printf("FAIL: %s\n", testName);
+call    0 returned 100%
+        -:   48:	}
+        -:   49:	
+       32:   50:	return 0;
+        -:   51:}
+        -:   52:
+function main called 1 returned 100% blocks executed 100%
+        1:   53:int main ()
+        -:   54:{
+        -:   55:	int i;
+        1:   56:	int handpos = 0, choice1 = 0, choice2 = 0, choice3 = 0, bonus = 0;
+        1:   57:	int seed = 1000;
+        1:   58:	int numPlayers = 4;
+        1:   59:	int currPlayer = 2;
+        -:   60:	struct gameState G, testG;
+        1:   61:	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:   62:			sea_hag, tribute, smithy, council_room};
+        -:   63:	
+        -:   64:	// initialize a game state and player cards
+        1:   65:	initializeGame(numPlayers, k, seed, &G);
+call    0 returned 100%
+        -:   66:	//set turn to player 2
+        1:   67:	G.whoseTurn = currPlayer;
+        -:   68:	
+        1:   69:	printf("----------------- Testing %s ----------------\n", TESTCARD);
+call    0 returned 100%
+        -:   70:	
+        -:   71:	// copy the game state to a test case	
+        1:   72:	memcpy(&testG, &G, sizeof(struct gameState));
+        -:   73:	
+        -:   74:	
+        -:   75:	//play smithy
+        1:   76:	cardEffect(council_room, choice1, choice2, choice3, &testG, handpos, &bonus);
+call    0 returned 100%
+        -:   77:	
+        -:   78:	//1. Player gains 4 cards to hand and discards council_room, resulting in a net of +3 cards.
+        1:   79:	assertTrue(testG.handCount[testG.whoseTurn] == G.handCount[G.whoseTurn] + 3, "Test 1: +3 cards to hand");
+call    0 returned 100%
+        1:   80:	printf("Expected %d cards. Got %d cards.\n", G.handCount[G.whoseTurn] + 3, testG.handCount[testG.whoseTurn]);
+call    0 returned 100%
+        -:   81:	
+        -:   82:	//2. Player loses 4 cards from deck.
+        1:   83:	assertTrue(testG.deckCount[testG.whoseTurn] == G.deckCount[G.whoseTurn] - 4, "Test 2: -4 cards from deck");
+call    0 returned 100%
+        1:   84:	printf("Expected %d cards. Got %d cards.\n", G.deckCount[G.whoseTurn] - 4, testG.deckCount[testG.whoseTurn]);
+call    0 returned 100%
+        -:   85:	
+        -:   86:	//3. Player gains 1 buy.
+        1:   87:	assertTrue(testG.numBuys == G.numBuys + 1, "Test 3: +1 Buys");
+call    0 returned 100%
+        -:   88:	
+        -:   89:	//4. All other players gain 1 card to hand.
+        -:   90:	//5. All other players lose 1 card from deck.
+        5:   91:	for (i = 0; i < numPlayers; i++)
+branch  0 taken 80%
+branch  1 taken 20% (fallthrough)
+        -:   92:	{
+        4:   93:		if (i != G.whoseTurn)
+branch  0 taken 75% (fallthrough)
+branch  1 taken 25%
+        -:   94:		{
+        3:   95:			printf("---Testing state for player %d---\n", i);
+call    0 returned 100%
+        3:   96:			assertTrue (testG.handCount[i] == G.handCount[i] +1, "Hand count.");
+call    0 returned 100%
+        3:   97:			assertTrue (testG.deckCount[i] == G.deckCount[i] -1, "Deck count.");
+call    0 returned 100%
+        -:   98:		}
+        -:   99:	}
+        -:  100:	
+        -:  101:	//4. No state changes occur to victory or kingdom card piles.
+        1:  102:	assertTrue(testG.supplyCount[estate] == G.supplyCount[estate], "Estate pile.");
+call    0 returned 100%
+        1:  103:	assertTrue(testG.supplyCount[duchy] == G.supplyCount[duchy], "Duchy pile.");
+call    0 returned 100%
+        1:  104:	assertTrue(testG.supplyCount[province] == G.supplyCount[province], "Estate pile.");
+call    0 returned 100%
+        -:  105:	
+       21:  106:	for (i = adventurer; i <= treasure_map; i++)
+branch  0 taken 95%
+branch  1 taken 5% (fallthrough)
+        -:  107:	{
+       20:  108:		printf("---Testing card pile for enum %d---\n", i);
+call    0 returned 100%
+       20:  109:		assertTrue(testG.supplyCount[i] = G.supplyCount[i], "Card pile.");
+call    0 returned 100%
+        -:  110:	}
+        -:  111:	
+        1:  112:	printf("-----------------%d/%d TESTS PASSED FOR %s----------------\n", passedTest, numTest, TESTCARD);	
+call    0 returned 100%
+        -:  113:	
+        1:  114:	return 0;
+        -:  115:}

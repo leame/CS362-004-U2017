@@ -1,0 +1,188 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:/*
+        -:    2: * unittest4.c
+        -:    3: * unit test for getCost function
+        -:    4: */
+        -:    5:
+        -:    6:/*
+        -:    7: * Include the following lines in your makefile:
+        -:    8: *
+        -:    9: * unittest4: unittest4.c dominion.o rngs.o
+        -:   10: *      gcc -o unittest4 -g  unittest4.c dominion.o rngs.o $(CFLAGS)
+        -:   11: */
+        -:   12:
+        -:   13:/*
+        -:   14:* Business rules:
+        -:   15:*http://wiki.dominionstrategy.com/index.php/List_of_cards
+        -:   16:* 1. Cards should have the correct cost.
+        -:   17:*
+        -:   18:*/
+        -:   19:
+        -:   20:#include "dominion.h"
+        -:   21:#include "dominion_helpers.h"
+        -:   22:#include <string.h>
+        -:   23:#include <stdio.h>
+        -:   24:#include <assert.h>
+        -:   25:#include "rngs.h"
+        -:   26:#include <stdlib.h>
+        -:   27:
+        -:   28:#define TESTFUNCTION "getCost()"
+        -:   29:
+        -:   30:int numTest = 0;
+        -:   31:int passedTest = 0;
+        -:   32:
+function assertTrue called 27 returned 100% blocks executed 83%
+       27:   33:int assertTrue(int testVal, char* testName, int i)
+        -:   34:{
+       27:   35:	numTest++;
+        -:   36:	
+       27:   37:	if (testVal)
+branch  0 taken 100% (fallthrough)
+branch  1 taken 0%
+        -:   38:	{
+       27:   39:		printf("PASS: %s %d\n", testName, i);
+call    0 returned 100%
+       27:   40:		passedTest++;
+        -:   41:	}
+        -:   42:	else
+        -:   43:	{
+    #####:   44:		printf("FAIL: %s %d\n", testName, i);
+call    0 never executed
+        -:   45:	}
+        -:   46:	
+       27:   47:	return 0;
+        -:   48:}
+        -:   49:
+        -:   50://expected cost values
+function expectedCost called 54 returned 100% blocks executed 97%
+       54:   51:int expectedCost(int cardNumber)
+        -:   52:{
+       54:   53:  switch( cardNumber ) 
+branch  0 taken 4%
+branch  1 taken 4%
+branch  2 taken 4%
+branch  3 taken 4%
+branch  4 taken 4%
+branch  5 taken 4%
+branch  6 taken 4%
+branch  7 taken 4%
+branch  8 taken 4%
+branch  9 taken 4%
+branch 10 taken 4%
+branch 11 taken 4%
+branch 12 taken 4%
+branch 13 taken 4%
+branch 14 taken 4%
+branch 15 taken 4%
+branch 16 taken 4%
+branch 17 taken 4%
+branch 18 taken 4%
+branch 19 taken 4%
+branch 20 taken 4%
+branch 21 taken 4%
+branch 22 taken 4%
+branch 23 taken 4%
+branch 24 taken 4%
+branch 25 taken 4%
+branch 26 taken 4%
+branch 27 taken 0%
+        -:   54:    {
+        -:   55:    case curse:
+        2:   56:      return 0;
+        -:   57:    case estate:
+        2:   58:      return 2;
+        -:   59:    case duchy:
+        2:   60:      return 5;
+        -:   61:    case province:
+        2:   62:      return 8;
+        -:   63:    case copper:
+        2:   64:      return 0;
+        -:   65:    case silver:
+        2:   66:      return 3;
+        -:   67:    case gold:
+        2:   68:      return 6;
+        -:   69:    case adventurer:
+        2:   70:      return 6;
+        -:   71:    case council_room:
+        2:   72:      return 5;
+        -:   73:    case feast:
+        2:   74:      return 4;
+        -:   75:    case gardens:
+        2:   76:      return 4;
+        -:   77:    case mine:
+        2:   78:      return 5;
+        -:   79:    case remodel:
+        2:   80:      return 4;
+        -:   81:    case smithy:
+        2:   82:      return 4;
+        -:   83:    case village:
+        2:   84:      return 3;
+        -:   85:    case baron:
+        2:   86:      return 4;
+        -:   87:    case great_hall:
+        2:   88:      return 3;
+        -:   89:    case minion:
+        2:   90:      return 5;
+        -:   91:    case steward:
+        2:   92:      return 3;
+        -:   93:    case tribute:
+        2:   94:      return 5;
+        -:   95:    case ambassador:
+        2:   96:      return 3;
+        -:   97:    case cutpurse:
+        2:   98:      return 4;
+        -:   99:    case embargo: 
+        2:  100:      return 2;
+        -:  101:    case outpost:
+        2:  102:      return 5;
+        -:  103:    case salvager:
+        2:  104:      return 4;
+        -:  105:    case sea_hag:
+        2:  106:      return 4;
+        -:  107:    case treasure_map:
+        2:  108:      return 4;
+        -:  109:    }
+        -:  110:	
+    #####:  111:  return -1;
+        -:  112:}
+        -:  113:
+function main called 1 returned 100% blocks executed 100%
+        1:  114:int main() {
+        -:  115:	int i;
+        1:  116:	int seed = 1000;
+        1:  117:	int numPlayers = 2;
+        -:  118:	struct gameState G;
+        1:  119:	int k[10] = {adventurer, embargo, village, minion, mine, cutpurse,
+        -:  120:			sea_hag, tribute, smithy, council_room};
+        -:  121:	
+        -:  122:	// initialize a game state and player cards
+        1:  123:	initializeGame(numPlayers, k, seed, &G);
+call    0 returned 100%
+        -:  124:
+        1:  125:	printf("----------------- Testing %s ----------------\n", TESTFUNCTION);
+call    0 returned 100%
+        -:  126:	
+       28:  127:	for (i = 0; i < 27; i++)
+branch  0 taken 96%
+branch  1 taken 4% (fallthrough)
+        -:  128:	{
+       27:  129:		assertTrue(expectedCost(i) == getCost(i), "Testing enum", i);
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+       27:  130:		printf("Expected value %d. Got value %d.\n", expectedCost(i), getCost(i));
+call    0 returned 100%
+call    1 returned 100%
+call    2 returned 100%
+        -:  131:	}
+        -:  132:	
+        1:  133:	printf("-----------------%d/%d TESTS PASSED FOR %s----------------\n", passedTest, numTest, TESTFUNCTION);
+call    0 returned 100%
+        -:  134:	
+        1:  135:	return 0;
+        -:  136:		
+        -:  137:}
