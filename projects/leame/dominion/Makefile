@@ -26,7 +26,7 @@ cardtest4: cardtest4.c dominion.o rngs.o
 
 assignment3_test_suite: unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4	
 
-run_3: assignment3_test_suite
+unittestresults.out: assignment3_test_suite
 	./unittest1 &> unittestresult.out
 	gcov unittest1 >> unittestresult.out
 	./unittest2 >> unittestresult.out
