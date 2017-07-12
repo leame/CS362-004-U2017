@@ -10,6 +10,10 @@ Expected 9 supplyCount. Got 9 supplyCount.
 PASS: Test 5: Check last discarded card.
 Tried to buy enum 0. Bought enum 0.
 -----------------5/5 TESTS PASSED FOR buyCard()----------------
+File 'unittest1.c'
+Lines executed:89.66% of 29
+Creating 'unittest1.c.gcov'
+
 ----------------- Testing updateCoins() ----------------
 PASS: Test 1: Copper value
 Expected 5 coins. Got 5 coins.
@@ -22,11 +26,23 @@ Expected 5 coins. Got 5 coins.
 PASS: Test 5: +1 copper, silver, gold, bonus
 Expected 11 coins. Got 11 coins.
 -----------------5/5 TESTS PASSED FOR updateCoins()----------------
+File 'unittest2.c'
+Lines executed:97.50% of 40
+Creating 'unittest2.c.gcov'
+
+File '<built-in>'
+No executable lines
+Removing '<built-in>.gcov'
+
 ----------------- Testing isGameOver() ----------------
 PASS: Test 1: Game in progress.
 PASS: Test 2: Province stack empty.
 PASS: Test 3: 3 empty supply stacks.
 -----------------3/3 TESTS PASSED FOR isGameOver()----------------
+File 'unittest3.c'
+Lines executed:95.83% of 24
+Creating 'unittest3.c.gcov'
+
 ----------------- Testing getCost() ----------------
 PASS: Testing enum 0
 Expected value 0. Got value 0.
@@ -83,6 +99,10 @@ Expected value 4. Got value 4.
 PASS: Testing enum 26
 Expected value 4. Got value 4.
 -----------------27/27 TESTS PASSED FOR getCost()----------------
+File 'unittest4.c'
+Lines executed:95.83% of 48
+Creating 'unittest4.c.gcov'
+
 ----------------- Testing smithy ----------------
 FAIL: Test 1: +2 cards to hand
 Expected 7 cards. Got 8 cards.
@@ -135,6 +155,10 @@ PASS: Card pile.
 ---Testing card pile for enum 26---
 PASS: Card pile.
 -----------------25/27 TESTS PASSED FOR smithy----------------
+File 'cardtest1.c'
+Lines executed:100.00% of 33
+Creating 'cardtest1.c.gcov'
+
 ----------------- Testing adventurer ----------------
 FAIL: Test 1: +1 cards to hand
 Expected 6 cards. Got 7 cards.
@@ -186,6 +210,10 @@ PASS: Card pile.
 ---Testing card pile for enum 26---
 PASS: Card pile.
 -----------------26/27 TESTS PASSED FOR adventurer----------------
+File 'cardtest2.c'
+Lines executed:100.00% of 42
+Creating 'cardtest2.c.gcov'
+
 ----------------- Testing council_room ----------------
 PASS: Test 1: +3 cards to hand
 Expected 3 cards. Got 3 cards.
@@ -245,6 +273,10 @@ PASS: Card pile.
 ---Testing card pile for enum 26---
 PASS: Card pile.
 -----------------30/32 TESTS PASSED FOR council_room----------------
+File 'cardtest3.c'
+Lines executed:100.00% of 36
+Creating 'cardtest3.c.gcov'
+
 ----------------- Testing village ----------------
 PASS: Test 1: +0 cards to hand
 Expected 5 cards. Got 5 cards.
@@ -299,6 +331,10 @@ PASS: Card pile.
 ---Testing card pile for enum 26---
 PASS: Card pile.
 -----------------27/28 TESTS PASSED FOR village----------------
+File 'cardtest4.c'
+Lines executed:100.00% of 35
+Creating 'cardtest4.c.gcov'
+
 File 'dominion.c'
 Lines executed:37.66% of 563
 Creating 'dominion.c.gcov'
