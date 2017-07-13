@@ -28,21 +28,13 @@ assignment3_test_suite: unittest1 unittest2 unittest3 unittest4 cardtest1 cardte
 
 unittestresults.out: assignment3_test_suite
 	./unittest1 &> unittestresults.out
-	gcov unittest1 -b >> unittestresults.out
 	./unittest2 >> unittestresults.out
-	gcov unittest2 -b >> unittestresults.out
 	./unittest3 >> unittestresults.out
-	gcov unittest3 -b >> unittestresults.out
 	./unittest4 >> unittestresults.out
-	gcov unittest4 -b >> unittestresults.out
 	./cardtest1 >> unittestresults.out
-	gcov cardtest1 -b >> unittestresults.out
 	./cardtest2 >> unittestresults.out
-	gcov cardtest2 -b >> unittestresults.out
 	./cardtest3 >> unittestresults.out
-	gcov cardtest3 -b >> unittestresults.out
 	./cardtest4 >> unittestresults.out
-	gcov cardtest4 -b >> unittestresults.out
 	gcov dominion.c -b >> unittestresults.out
 	cat dominion.c.gcov >> unittestresults.out
 	
