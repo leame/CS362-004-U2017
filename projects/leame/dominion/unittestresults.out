@@ -10,6 +10,13 @@ Expected 9 supplyCount. Got 9 supplyCount.
 PASS: Test 5: Check last discarded card.
 Tried to buy enum 0. Bought enum 0.
 -----------------5/5 TESTS PASSED FOR buyCard()----------------
+File 'dominion.c'
+Lines executed:19.54% of 563
+Branches executed:24.94% of 417
+Taken at least once:13.91% of 417
+Calls executed:12.12% of 99
+Creating 'dominion.c.gcov'
+
 ----------------- Testing updateCoins() ----------------
 PASS: Test 1: Copper value
 Expected 5 coins. Got 5 coins.
@@ -22,11 +29,25 @@ Expected 5 coins. Got 5 coins.
 PASS: Test 5: +1 copper, silver, gold, bonus
 Expected 11 coins. Got 11 coins.
 -----------------5/5 TESTS PASSED FOR updateCoins()----------------
+File 'dominion.c'
+Lines executed:20.25% of 563
+Branches executed:24.94% of 417
+Taken at least once:14.63% of 417
+Calls executed:12.12% of 99
+Creating 'dominion.c.gcov'
+
 ----------------- Testing isGameOver() ----------------
 PASS: Test 1: Game in progress.
 PASS: Test 2: Province stack empty.
 PASS: Test 3: 3 empty supply stacks.
 -----------------3/3 TESTS PASSED FOR isGameOver()----------------
+File 'dominion.c'
+Lines executed:22.02% of 563
+Branches executed:26.86% of 417
+Taken at least once:16.55% of 417
+Calls executed:12.12% of 99
+Creating 'dominion.c.gcov'
+
 ----------------- Testing getCost() ----------------
 PASS: Testing enum 0
 Expected value 0. Got value 0.
@@ -83,6 +104,13 @@ Expected value 4. Got value 4.
 PASS: Testing enum 26
 Expected value 4. Got value 4.
 -----------------27/27 TESTS PASSED FOR getCost()----------------
+File 'dominion.c'
+Lines executed:26.64% of 563
+Branches executed:26.86% of 417
+Taken at least once:22.78% of 417
+Calls executed:12.12% of 99
+Creating 'dominion.c.gcov'
+
 ----------------- Testing smithy ----------------
 FAIL: Test 1: +2 cards to hand
 Expected 7 cards. Got 8 cards.
@@ -135,6 +163,13 @@ PASS: Card pile.
 ---Testing card pile for enum 26---
 PASS: Card pile.
 -----------------25/27 TESTS PASSED FOR smithy----------------
+File 'dominion.c'
+Lines executed:31.26% of 563
+Branches executed:34.29% of 417
+Taken at least once:24.46% of 417
+Calls executed:17.17% of 99
+Creating 'dominion.c.gcov'
+
 ----------------- Testing adventurer ----------------
 FAIL: Test 1: +1 cards to hand
 Expected 6 cards. Got 7 cards.
@@ -186,6 +221,13 @@ PASS: Card pile.
 ---Testing card pile for enum 26---
 PASS: Card pile.
 -----------------26/27 TESTS PASSED FOR adventurer----------------
+File 'dominion.c'
+Lines executed:33.57% of 563
+Branches executed:36.21% of 417
+Taken at least once:25.90% of 417
+Calls executed:19.19% of 99
+Creating 'dominion.c.gcov'
+
 ----------------- Testing council_room ----------------
 PASS: Test 1: +3 cards to hand
 Expected 3 cards. Got 3 cards.
@@ -245,6 +287,13 @@ PASS: Card pile.
 ---Testing card pile for enum 26---
 PASS: Card pile.
 -----------------30/32 TESTS PASSED FOR council_room----------------
+File 'dominion.c'
+Lines executed:36.41% of 563
+Branches executed:38.13% of 417
+Taken at least once:28.30% of 417
+Calls executed:24.24% of 99
+Creating 'dominion.c.gcov'
+
 ----------------- Testing village ----------------
 PASS: Test 1: +0 cards to hand
 Expected 5 cards. Got 5 cards.
