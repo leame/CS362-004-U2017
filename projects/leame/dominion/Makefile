@@ -12,12 +12,15 @@ randomtestcard2: randomtestcard2.c dominion.o rngs.o
 assignment4_test_suite: randomtestadventurer randomtestcard1 randomtestcard2
 
 randomtestresults.out: assignment4_test_suite
-	./randomtestadventurer &> randomtestresults.out
-	gcov dominion.c -b >> randomtestresults.out
-	./randomtestcard1 >> randomtestresults.out
-	gcov dominion.c -b >> randomtestresults.out
-	./randomtestcard2 >> randomtestresults.out
-	gcov dominion.c -b >> randomtestresults.out
+	./randomtestadventurer &> randomtestadventurer.out
+	gcov dominion.c -b >> randomtestadventurer.out
+	cat dominion.c.gcov >> randomtestadventurer.out		
+	./randomtestcard1 >> randomtestcard1.out
+	gcov dominion.c -b >> randomtestcard1.out
+	cat dominion.c.gcov >> randomtestcard1.out		
+	./randomtestcard2 >> randomtestcard2.out
+	gcov dominion.c -b >> randomtestcard2.out
+	cat dominion.c.gcov >> randomtestcard2.out		
 	cat dominion.c.gcov >> randomtestresults.out		
 
 unittest1: unittest1.c dominion.o rngs.o
@@ -101,5 +104,5 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 unittestresults.out
+	rm -f *.o playdom.exe playdom player player.exe  *.gcov *.gcda *.gcno *.so *.out testDrawCard testDrawCard.exe unittest1 unittest2 unittest3 unittest4 cardtest1 cardtest2 cardtest3 cardtest4 randomtestadventurer randomtestcard1 randomtestcard2
 
