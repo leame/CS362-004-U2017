@@ -11,17 +11,20 @@ randomtestcard2: randomtestcard2.c dominion.o rngs.o
 	
 assignment4_test_suite: randomtestadventurer randomtestcard1 randomtestcard2
 
-randomtestresults.out: assignment4_test_suite
+rta.out: randomtestadventurer
 	./randomtestadventurer &> randomtestadventurer.out
 	gcov dominion.c -b >> randomtestadventurer.out
 	cat dominion.c.gcov >> randomtestadventurer.out		
+
+rtc1.out: randomtestcard1
 	./randomtestcard1 >> randomtestcard1.out
 	gcov dominion.c -b >> randomtestcard1.out
-	cat dominion.c.gcov >> randomtestcard1.out		
+	cat dominion.c.gcov >> randomtestcard1.out	
+
+rtc2.out: randomtestcard2
 	./randomtestcard2 >> randomtestcard2.out
 	gcov dominion.c -b >> randomtestcard2.out
-	cat dominion.c.gcov >> randomtestcard2.out		
-	cat dominion.c.gcov >> randomtestresults.out		
+	cat dominion.c.gcov >> randomtestcard2.out	
 
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 -g -std=c99 unittest1.c dominion.o rngs.o $(CFLAGS)
