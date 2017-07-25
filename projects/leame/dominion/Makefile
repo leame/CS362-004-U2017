@@ -1,5 +1,25 @@
 CFLAGS = -Wall -fpic -coverage -lm
 
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g -std=c99 randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g -std=c99 randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+	
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g -std=c99 randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+	
+assignment4_test_suite: randomtestadventurer randomtestcard1 randomtestcard2
+
+randomtestresults.out: assignment4_test_suite
+	./randomtestadventurer &> randomtestresults.out
+	gcov dominion.c -b >> randomtestresults.out
+	./randomtestcard1 >> randomtestresults.out
+	gcov dominion.c -b >> randomtestresults.out
+	./randomtestcard2 >> randomtestresults.out
+	gcov dominion.c -b >> randomtestresults.out
+	cat dominion.c.gcov >> randomtestresults.out		
+
 unittest1: unittest1.c dominion.o rngs.o
 	gcc -o unittest1 -g -std=c99 unittest1.c dominion.o rngs.o $(CFLAGS)
 	

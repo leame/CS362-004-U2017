@@ -1,3 +1,187 @@
+-----------------Testing adventurer ----------------
+-----------------1/10 Iterations. Players: 3. ----------------
+FAIL: Test 1: +1 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 3 cards.
+Expected 6 treasure. Got 6 treasure.
+-----------------2/10 Iterations. Players: 3. ----------------
+FAIL: Test 1: +1 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 3 cards.
+Expected 5 treasure. Got 5 treasure.
+-----------------3/10 Iterations. Players: 2. ----------------
+FAIL: Test 1: +1 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 2 cards.
+Expected 6 treasure. Got 6 treasure.
+-----------------4/10 Iterations. Players: 2. ----------------
+Expected 6 cards. Got 6 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 1 cards.
+FAIL: Test 3: +2 Treasure cards to hand
+Expected 7 treasure. Got 6 treasure.
+-----------------5/10 Iterations. Players: 4. ----------------
+Expected 6 cards. Got 6 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 2 cards.
+FAIL: Test 3: +2 Treasure cards to hand
+Expected 7 treasure. Got 6 treasure.
+-----------------6/10 Iterations. Players: 2. ----------------
+Expected 6 cards. Got 6 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 2 cards.
+FAIL: Test 3: +2 Treasure cards to hand
+Expected 7 treasure. Got 6 treasure.
+-----------------7/10 Iterations. Players: 2. ----------------
+FAIL: Test 1: +1 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 1 cards.
+Expected 7 treasure. Got 7 treasure.
+-----------------8/10 Iterations. Players: 3. ----------------
+FAIL: Test 1: +1 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 3 cards.
+Expected 5 treasure. Got 5 treasure.
+-----------------9/10 Iterations. Players: 3. ----------------
+FAIL: Test 1: +1 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 2 cards.
+Expected 6 treasure. Got 6 treasure.
+-----------------10/10 Iterations. Players: 3. ----------------
+FAIL: Test 1: +1 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Played.
+Expected 4 cards. Got 3 cards.
+Expected 7 treasure. Got 7 treasure.
+File 'dominion.c'
+Lines executed:41.21% of 563
+Branches executed:40.05% of 417
+Taken at least once:31.65% of 417
+Calls executed:30.30% of 99
+Creating 'dominion.c.gcov'
+
+----------------- Testing village ----------------
+-----------------1/10 Iterations. Players: 3. Actions: 5----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 4 cards. Got 4 cards.
+FAIL: Test 3: +1 Actions
+Expected 7 actions. Got 6 actions.
+-----------------2/10 Iterations. Players: 4. Actions: 1----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 2 cards. Got 2 cards.
+FAIL: Test 3: +1 Actions
+Expected 3 actions. Got 2 actions.
+-----------------3/10 Iterations. Players: 3. Actions: 3----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 3 cards. Got 3 cards.
+FAIL: Test 3: +1 Actions
+Expected 5 actions. Got 4 actions.
+-----------------4/10 Iterations. Players: 3. Actions: 4----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 3 cards. Got 3 cards.
+FAIL: Test 3: +1 Actions
+Expected 6 actions. Got 5 actions.
+-----------------5/10 Iterations. Players: 2. Actions: 3----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 3 cards. Got 3 cards.
+FAIL: Test 3: +1 Actions
+Expected 5 actions. Got 4 actions.
+-----------------6/10 Iterations. Players: 2. Actions: 2----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 3 cards. Got 3 cards.
+FAIL: Test 3: +1 Actions
+Expected 4 actions. Got 3 actions.
+-----------------7/10 Iterations. Players: 4. Actions: 1----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 4 cards. Got 4 cards.
+FAIL: Test 3: +1 Actions
+Expected 3 actions. Got 2 actions.
+-----------------8/10 Iterations. Players: 2. Actions: 3----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 2 cards. Got 2 cards.
+FAIL: Test 3: +1 Actions
+Expected 5 actions. Got 4 actions.
+-----------------9/10 Iterations. Players: 2. Actions: 4----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 4 cards. Got 4 cards.
+FAIL: Test 3: +1 Actions
+Expected 6 actions. Got 5 actions.
+-----------------10/10 Iterations. Players: 4. Actions: 4----------------
+Cards in hand: Expected 5 cards. Got 5 cards.
+Cards in deck: Expected 2 cards. Got 2 cards.
+FAIL: Test 3: +1 Actions
+Expected 6 actions. Got 5 actions.
+File 'dominion.c'
+Lines executed:41.21% of 563
+Branches executed:40.05% of 417
+Taken at least once:31.65% of 417
+Calls executed:30.30% of 99
+Creating 'dominion.c.gcov'
+
+----------------- Testing smithy ----------------
+-----------------1/10 Iterations. Players: 3----------------
+FAIL: Test 1: +2 cards to hand
+Expected 8 cards. Got 9 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 2 cards. Got 1 cards.
+-----------------2/10 Iterations. Players: 3----------------
+FAIL: Test 1: +2 cards to hand
+Expected 5 cards. Got 6 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 5 cards. Got 4 cards.
+-----------------3/10 Iterations. Players: 3----------------
+FAIL: Test 1: +2 cards to hand
+Expected 5 cards. Got 6 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 5 cards. Got 4 cards.
+-----------------4/10 Iterations. Players: 3----------------
+FAIL: Test 1: +2 cards to hand
+Expected 5 cards. Got 6 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 5 cards. Got 4 cards.
+-----------------5/10 Iterations. Players: 4----------------
+FAIL: Test 1: +2 cards to hand
+Expected 5 cards. Got 6 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 5 cards. Got 4 cards.
+-----------------6/10 Iterations. Players: 2----------------
+FAIL: Test 1: +2 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 4 cards. Got 3 cards.
+-----------------7/10 Iterations. Players: 2----------------
+FAIL: Test 1: +2 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 4 cards. Got 3 cards.
+-----------------8/10 Iterations. Players: 2----------------
+FAIL: Test 1: +2 cards to hand
+Expected 4 cards. Got 5 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 6 cards. Got 5 cards.
+-----------------9/10 Iterations. Players: 4----------------
+FAIL: Test 1: +2 cards to hand
+Expected 6 cards. Got 7 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 4 cards. Got 3 cards.
+-----------------10/10 Iterations. Players: 4----------------
+FAIL: Test 1: +2 cards to hand
+Expected 8 cards. Got 9 cards.
+FAIL: Test 2: Deck + Discard.
+Expected 2 cards. Got 1 cards.
+File 'dominion.c'
+Lines executed:41.21% of 563
+Branches executed:40.05% of 417
+Taken at least once:31.65% of 417
+Calls executed:30.30% of 99
+Creating 'dominion.c.gcov'
+
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
