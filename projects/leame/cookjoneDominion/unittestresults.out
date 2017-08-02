@@ -1,0 +1,351 @@
+profiling:/nfs/stak/students/l/leame/CS362/cookjoneDominion/rngs.gcda:Version mismatch - expected 408R got 402*
+profiling:/nfs/stak/students/l/leame/CS362/cookjoneDominion/dominion.gcda:Version mismatch - expected 408R got 402*
+----------------- Testing buyCard() ----------------
+PASS: Test 1: +1 card to discard pile
+Expected 1 cards. Got 1 cards.
+PASS: Test 2: Subtract coins
+Expected 4 coins. Got 4 coins.
+PASS: Test 3: Substract buys
+Expected 0 buys. Got 0 buys.
+PASS: Test 4: Subtract supplyCount
+Expected 9 supplyCount. Got 9 supplyCount.
+PASS: Test 5: Check last discarded card.
+Tried to buy enum 0. Bought enum 0.
+-----------------5/5 TESTS PASSED FOR buyCard()----------------
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+
+----------------- Testing updateCoins() ----------------
+PASS: Test 1: Copper value
+Expected 5 coins. Got 5 coins.
+PASS: Test 2: Silver value
+Expected 6 coins. Got 6 coins.
+PASS: Test 3: Gold value
+Expected 7 coins. Got 7 coins.
+PASS: Test 4: +1 bonus coin
+Expected 5 coins. Got 5 coins.
+PASS: Test 5: +1 copper, silver, gold, bonus
+Expected 11 coins. Got 11 coins.
+-----------------5/5 TESTS PASSED FOR updateCoins()----------------
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+
+----------------- Testing isGameOver() ----------------
+PASS: Test 1: Game in progress.
+PASS: Test 2: Province stack empty.
+PASS: Test 3: 3 empty supply stacks.
+-----------------3/3 TESTS PASSED FOR isGameOver()----------------
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+
+----------------- Testing getCost() ----------------
+PASS: Testing enum 0
+Expected value 0. Got value 0.
+PASS: Testing enum 1
+Expected value 2. Got value 2.
+PASS: Testing enum 2
+Expected value 5. Got value 5.
+PASS: Testing enum 3
+Expected value 8. Got value 8.
+PASS: Testing enum 4
+Expected value 0. Got value 0.
+PASS: Testing enum 5
+Expected value 3. Got value 3.
+PASS: Testing enum 6
+Expected value 6. Got value 6.
+PASS: Testing enum 7
+Expected value 6. Got value 6.
+PASS: Testing enum 8
+Expected value 5. Got value 5.
+PASS: Testing enum 9
+Expected value 4. Got value 4.
+PASS: Testing enum 10
+Expected value 4. Got value 4.
+PASS: Testing enum 11
+Expected value 5. Got value 5.
+PASS: Testing enum 12
+Expected value 4. Got value 4.
+PASS: Testing enum 13
+Expected value 4. Got value 4.
+PASS: Testing enum 14
+Expected value 3. Got value 3.
+PASS: Testing enum 15
+Expected value 4. Got value 4.
+PASS: Testing enum 16
+Expected value 3. Got value 3.
+PASS: Testing enum 17
+Expected value 5. Got value 5.
+PASS: Testing enum 18
+Expected value 3. Got value 3.
+PASS: Testing enum 19
+Expected value 5. Got value 5.
+PASS: Testing enum 20
+Expected value 3. Got value 3.
+PASS: Testing enum 21
+Expected value 4. Got value 4.
+PASS: Testing enum 22
+Expected value 2. Got value 2.
+PASS: Testing enum 23
+Expected value 5. Got value 5.
+PASS: Testing enum 24
+Expected value 4. Got value 4.
+PASS: Testing enum 25
+Expected value 4. Got value 4.
+PASS: Testing enum 26
+Expected value 4. Got value 4.
+-----------------27/27 TESTS PASSED FOR getCost()----------------
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+
+----------------- Testing smithy ----------------
+FAIL: Test 1: +2 cards to hand
+Expected 7 cards. Got 8 cards.
+FAIL: Test 2: -3 cards from deck
+Expected 2 cards. Got 1 cards.
+---Testing state for player 1---
+PASS: Hand count.
+PASS: Deck count.
+PASS: Estate pile.
+PASS: Duchy pile.
+PASS: Estate pile.
+---Testing card pile for enum 7---
+PASS: Card pile.
+---Testing card pile for enum 8---
+PASS: Card pile.
+---Testing card pile for enum 9---
+PASS: Card pile.
+---Testing card pile for enum 10---
+PASS: Card pile.
+---Testing card pile for enum 11---
+PASS: Card pile.
+---Testing card pile for enum 12---
+PASS: Card pile.
+---Testing card pile for enum 13---
+PASS: Card pile.
+---Testing card pile for enum 14---
+PASS: Card pile.
+---Testing card pile for enum 15---
+PASS: Card pile.
+---Testing card pile for enum 16---
+PASS: Card pile.
+---Testing card pile for enum 17---
+PASS: Card pile.
+---Testing card pile for enum 18---
+PASS: Card pile.
+---Testing card pile for enum 19---
+PASS: Card pile.
+---Testing card pile for enum 20---
+PASS: Card pile.
+---Testing card pile for enum 21---
+PASS: Card pile.
+---Testing card pile for enum 22---
+PASS: Card pile.
+---Testing card pile for enum 23---
+PASS: Card pile.
+---Testing card pile for enum 24---
+PASS: Card pile.
+---Testing card pile for enum 25---
+PASS: Card pile.
+---Testing card pile for enum 26---
+PASS: Card pile.
+-----------------25/27 TESTS PASSED FOR smithy----------------
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+
+----------------- Testing adventurer ----------------
+FAIL: Test 1: +1 cards to hand
+Expected 6 cards. Got 8 cards.
+FAIL: Test 2: +2 Treasure cards to hand
+---Testing state for player 1---
+PASS: Hand count.
+PASS: Deck count.
+PASS: Estate pile.
+PASS: Duchy pile.
+PASS: Estate pile.
+---Testing card pile for enum 7---
+PASS: Card pile.
+---Testing card pile for enum 8---
+PASS: Card pile.
+---Testing card pile for enum 9---
+PASS: Card pile.
+---Testing card pile for enum 10---
+PASS: Card pile.
+---Testing card pile for enum 11---
+PASS: Card pile.
+---Testing card pile for enum 12---
+PASS: Card pile.
+---Testing card pile for enum 13---
+PASS: Card pile.
+---Testing card pile for enum 14---
+PASS: Card pile.
+---Testing card pile for enum 15---
+PASS: Card pile.
+---Testing card pile for enum 16---
+PASS: Card pile.
+---Testing card pile for enum 17---
+PASS: Card pile.
+---Testing card pile for enum 18---
+PASS: Card pile.
+---Testing card pile for enum 19---
+PASS: Card pile.
+---Testing card pile for enum 20---
+PASS: Card pile.
+---Testing card pile for enum 21---
+PASS: Card pile.
+---Testing card pile for enum 22---
+PASS: Card pile.
+---Testing card pile for enum 23---
+PASS: Card pile.
+---Testing card pile for enum 24---
+PASS: Card pile.
+---Testing card pile for enum 25---
+PASS: Card pile.
+---Testing card pile for enum 26---
+PASS: Card pile.
+-----------------25/27 TESTS PASSED FOR adventurer----------------
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+
+----------------- Testing council_room ----------------
+FAIL: Test 1: +3 cards to hand
+Expected 3 cards. Got 4 cards.
+FAIL: Test 2: -4 cards from deck
+Expected 6 cards. Got 5 cards.
+PASS: Test 3: +1 Buys
+---Testing state for player 0---
+PASS: Hand count.
+PASS: Deck count.
+---Testing state for player 1---
+PASS: Hand count.
+PASS: Deck count.
+---Testing state for player 3---
+PASS: Hand count.
+PASS: Deck count.
+PASS: Estate pile.
+PASS: Duchy pile.
+PASS: Estate pile.
+---Testing card pile for enum 7---
+PASS: Card pile.
+---Testing card pile for enum 8---
+PASS: Card pile.
+---Testing card pile for enum 9---
+PASS: Card pile.
+---Testing card pile for enum 10---
+PASS: Card pile.
+---Testing card pile for enum 11---
+PASS: Card pile.
+---Testing card pile for enum 12---
+PASS: Card pile.
+---Testing card pile for enum 13---
+PASS: Card pile.
+---Testing card pile for enum 14---
+PASS: Card pile.
+---Testing card pile for enum 15---
+PASS: Card pile.
+---Testing card pile for enum 16---
+PASS: Card pile.
+---Testing card pile for enum 17---
+PASS: Card pile.
+---Testing card pile for enum 18---
+PASS: Card pile.
+---Testing card pile for enum 19---
+PASS: Card pile.
+---Testing card pile for enum 20---
+PASS: Card pile.
+---Testing card pile for enum 21---
+PASS: Card pile.
+---Testing card pile for enum 22---
+PASS: Card pile.
+---Testing card pile for enum 23---
+PASS: Card pile.
+---Testing card pile for enum 24---
+PASS: Card pile.
+---Testing card pile for enum 25---
+PASS: Card pile.
+---Testing card pile for enum 26---
+PASS: Card pile.
+-----------------30/32 TESTS PASSED FOR council_room----------------
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+
+----------------- Testing village ----------------
+PASS: Test 1: +0 cards to hand
+Expected 5 cards. Got 5 cards.
+PASS: Test 2: -1 cards from deck
+Expected 4 cards. Got 4 cards.
+FAIL: Test 3: +1 Buys
+Expected 3 actions. Got 4 actions.
+---Testing state for player 1---
+PASS: Hand count.
+PASS: Deck count.
+PASS: Estate pile.
+PASS: Duchy pile.
+PASS: Estate pile.
+---Testing card pile for enum 7---
+PASS: Card pile.
+---Testing card pile for enum 8---
+PASS: Card pile.
+---Testing card pile for enum 9---
+PASS: Card pile.
+---Testing card pile for enum 10---
+PASS: Card pile.
+---Testing card pile for enum 11---
+PASS: Card pile.
+---Testing card pile for enum 12---
+PASS: Card pile.
+---Testing card pile for enum 13---
+PASS: Card pile.
+---Testing card pile for enum 14---
+PASS: Card pile.
+---Testing card pile for enum 15---
+PASS: Card pile.
+---Testing card pile for enum 16---
+PASS: Card pile.
+---Testing card pile for enum 17---
+PASS: Card pile.
+---Testing card pile for enum 18---
+PASS: Card pile.
+---Testing card pile for enum 19---
+PASS: Card pile.
+---Testing card pile for enum 20---
+PASS: Card pile.
+---Testing card pile for enum 21---
+PASS: Card pile.
+---Testing card pile for enum 22---
+PASS: Card pile.
+---Testing card pile for enum 23---
+PASS: Card pile.
+---Testing card pile for enum 24---
+PASS: Card pile.
+---Testing card pile for enum 25---
+PASS: Card pile.
+---Testing card pile for enum 26---
+PASS: Card pile.
+-----------------27/28 TESTS PASSED FOR village----------------
+File 'dominion.c'
+No executable lines
+No branches
+No calls
+Removing 'dominion.c.gcov'
+
