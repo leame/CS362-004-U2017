@@ -684,8 +684,8 @@ int play_adventurer(struct gameState *state)
 
 	return 0;
 }
-
-//Smithy bug: for (i = 0; i < 3; i++) changed to
+//8/3/17: Smithy fixed.
+//Smithy bug was: for (i = 0; i < 3; i++) changed to
 // for (i = 0; i < 4; i++). Draws 1 extra card. 
 int play_smithy(struct gameState *state, int handPos)
 {
@@ -693,7 +693,7 @@ int play_smithy(struct gameState *state, int handPos)
 	int currentPlayer = whoseTurn(state);
 
 	//+3 Cards
-	for (i = 0; i < 4; i++)
+	for (i = 0; i < 3; i++)
 	{
 		drawCard(currentPlayer, state);
 	}
